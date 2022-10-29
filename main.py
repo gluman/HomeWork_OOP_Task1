@@ -41,7 +41,7 @@ class Student:
         return f'''
             Имя: {self.name}
             Фамилия: {self.surname}
-            Средняя оценка за лекции: {self._abs_score_student():.1f}
+            Средняя оценка за домашние задания: {self._abs_score_student():.1f}
             Курсы в процессе изучения: {self._list_courses()}
             Завершенные курсы: {self._list_finished_courses()}
             '''
@@ -74,6 +74,14 @@ class Lecturer(Mentor):
             Фамилия: {self.surname}
             Средняя оценка за лекции: {self._abs_score_lector():.1f}'''
 
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('His is not a Lector')
+            return
+        return self._abs_score_lector() < other._abs_score_lector()
+
+
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -93,6 +101,8 @@ class Reviewer(Mentor):
             Имя: {self.name}
             Фамилия: {self.surname}'''
 
+
+
 best_student = Student('Andrey', 'Glumov', 'Male')
 best_student.courses_in_progress += ['Python']
 best_student.courses_in_progress += ['Git']
@@ -108,10 +118,19 @@ some_reviewer.rate_hw(best_student, 'Python', 7)
 
 some_lector = Lecturer('Termi', 'Nator')
 some_lector.courses_attached += ['Python']
+some_lector2 = Lecturer('T', '1000')
+some_lector2.courses_attached += ['Git']
 
 best_student.rate_lc(some_lector, 'Python', 10)
 best_student.rate_lc(some_lector, 'Python', 5)
+best_student.rate_lc(some_lector2, 'Git', 7)
+best_student.rate_lc(some_lector2, 'Git', 9)
 
 print(some_reviewer)
 print(some_lector)
+print(some_lector2)
+print(some_lector.__lt__(some_lector2))
+print(some_lector < some_lector2)
+print(some_lector > some_lector2)
 print(best_student)
+
