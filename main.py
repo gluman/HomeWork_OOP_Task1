@@ -159,6 +159,6 @@ print(some_lector < some_lector2)
 print(some_lector > some_lector2)
 print(best_student)
 
-print(f'Git: {calc_abs_score(Student.students_obj, "Git"):.1f}')
+print(f'{calc_abs_score(Student.students_obj, "Git"):.1f}')
 print(f'{calc_abs_score(Lecturer.lectors_obj, "Git"):.1f}')
 print(f'{calc_abs_score(Lecturer.lectors_obj, "Python"):.1f}')
